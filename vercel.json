@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    { "source": "/recipes", "destination": "/recipes.html" },
+    { "source": "/contact", "destination": "/contact.html" },
+    { "source": "/login", "destination": "/login.html" },
+    { "source": "/recipe-detail", "destination": "/recipe-detail.html" }
+  ]
+}
