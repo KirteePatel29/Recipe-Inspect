@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile - Recipe Finder</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="styles/main.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold text-primary" href="index.html">
+                <i class="bi bi-egg-fried me-2"></i>Recipe Finder
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="recipes.html">Recipes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="meal-planner.html">Meal Planner</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="submit-recipe.html">Submit Recipe</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="shopping-list.html">
+                            <i class="bi bi-cart3"></i>
+                            <span class="badge bg-accent rounded-pill ms-1" id="cartCount">0</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="profile.html">
+                            <i class="bi bi-person-circle"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="login.html">Login</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Profile Content -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 mb-4">
+                    <div class="card shadow-sm">
+                        <div class="card-body text-center">
+                            <img src="https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=150&h=150&fit=crop" 
+                                 alt="Profile" class="rounded-circle mb-3" width="100" height="100">
+                            <h5 class="card-title">John Doe</h5>
+                            <p class="text-muted">Food Enthusiast</p>
+                            <p class="small">Member since Jan 2025</p>
+                        </div>
+                    </div>
+
+                    <!-- Profile Stats -->
+                    <div class="card shadow-sm mt-4">
+                        <div class="card-header bg-primary text-white">
+                            <h6 class="mb-0">Stats</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="row text-center">
+                                <div class="col-12 mb-3">
+                                    <div class="fw-bold text-primary" id="favoriteCount">0</div>
+                                    <div class="small text-muted">Favorites</div>
+                                </div>
+                                <div class="col-12 mb-3">
+                                    <div class="fw-bold text-secondary" id="reviewCount">0</div>
+                                    <div class="small text-muted">Reviews</div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="fw-bold text-accent" id="recipeCount">0</div>
+                                    <div class="small text-muted">Recipes Tried</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-9">
+                    <!-- Tabs -->
+                    <ul class="nav nav-tabs mb-4" id="profileTabs" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active" id="favorites-tab" data-bs-toggle="tab" data-bs-target="#favorites" type="button" role="tab">
+                                <i class="bi bi-heart me-1"></i>Favorites
+                            </button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="recent-tab" data-bs-toggle="tab" data-bs-target="#recent" type="button" role="tab">
+                                <i class="bi bi-clock-history me-1"></i>Recently Viewed
+                            </button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="reviews-tab" data-bs-toggle="tab" data-bs-target="#reviews" type="button" role="tab">
+                                <i class="bi bi-star me-1"></i>My Reviews
+                            </button>
+                        </li>
+                    </ul>
+
+                    <!-- Tab Content -->
+                    <div class="tab-content" id="profileTabContent">
+                        <!-- Favorites Tab -->
+                        <div class="tab-pane fade show active" id="favorites" role="tabpanel">
+                            <div class="d-flex justify-content-between align-items-center mb-4">
+                                <h5>My Favorite Recipes</h5>
+                                <button class="btn btn-outline-danger btn-sm" id="clearFavorites">
+                                    <i class="bi bi-trash me-1"></i>Clear All
+                                </button>
+                            </div>
+                            <div class="row g-4" id="favoriteRecipes">
+                                <!-- Favorite recipes will be populated by JavaScript -->
+                            </div>
+                        </div>
+
+                        <!-- Recently Viewed Tab -->
+                        <div class="tab-pane fade" id="recent" role="tabpanel">
+                            <div class="d-flex justify-content-between align-items-center mb-4">
+                                <h5>Recently Viewed Recipes</h5>
+                                <button class="btn btn-outline-danger btn-sm" id="clearRecent">
+                                    <i class="bi bi-trash me-1"></i>Clear All
+                                </button>
+                            </div>
+                            <div class="row g-4" id="recentRecipes">
+                                <!-- Recent recipes will be populated by JavaScript -->
+                            </div>
+                        </div>
+
+                        <!-- Reviews Tab -->
+                        <div class="tab-pane fade" id="reviews" role="tabpanel">
+                            <h5 class="mb-4">My Reviews</h5>
+                            <div id="userReviews">
+                                <!-- User reviews will be populated by JavaScript -->
+                                <div class="text-center text-muted py-5">
+                                    <i class="bi bi-chat-square-text display-1 text-muted"></i>
+                                    <p class="mt-3">You haven't written any reviews yet.</p>
+                                    <p>Start exploring recipes and share your experience!</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-5">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-3">
+                    <h5 class="fw-bold text-primary mb-3">Recipe Finder</h5>
+                    <p>Discover, cook, and share amazing recipes from around the world.</p>
+                </div>
+                <div class="col-lg-3">
+                    <h6 class="fw-bold mb-3">Recipes</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-light text-decoration-none">Breakfast</a></li>
+                        <li><a href="#" class="text-light text-decoration-none">Lunch</a></li>
+                        <li><a href="#" class="text-light text-decoration-none">Dinner</a></li>
+                        <li><a href="#" class="text-light text-decoration-none">Desserts</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3">
+                    <h6 class="fw-bold mb-3">Tools</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="meal-planner.html" class="text-light text-decoration-none">Meal Planner</a></li>
+                        <li><a href="shopping-list.html" class="text-light text-decoration-none">Shopping List</a></li>
+                        <li><a href="profile.html" class="text-light text-decoration-none">Favorites</a></li>
+                        <li><a href="submit-recipe.html" class="text-light text-decoration-none">Submit Recipe</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3">
+                    <h6 class="fw-bold mb-3">Support</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="contact.html" class="text-light text-decoration-none">Contact Us</a></li>
+                        <li><a href="#" class="text-light text-decoration-none">FAQ</a></li>
+                        <li><a href="#" class="text-light text-decoration-none">Privacy Policy</a></li>
+                        <li><a href="#" class="text-light text-decoration-none">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="my-4">
+            <div class="text-center">
+                <p class="mb-0">&copy; 2025 Recipe Finder. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="scripts/data.js"></script>
+    <script src="scripts/utils.js"></script>
+    <script src="scripts/profile.js"></script>
+</body>
+</html>

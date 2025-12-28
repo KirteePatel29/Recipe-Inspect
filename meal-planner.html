@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meal Planner - Recipe Finder</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="styles/main.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold text-primary" href="index.html">
+                <i class="bi bi-egg-fried me-2"></i>Recipe Finder
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="recipes.html">Recipes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="meal-planner.html">Meal Planner</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="submit-recipe.html">Submit Recipe</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="shopping-list.html">
+                            <i class="bi bi-cart3"></i>
+                            <span class="badge bg-accent rounded-pill ms-1" id="cartCount">0</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="profile.html">
+                            <i class="bi bi-person-circle"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="login.html">Login</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Meal Planner Header -->
+    <section class="py-4 bg-light">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <h2 class="fw-bold mb-2">Weekly Meal Planner</h2>
+                    <p class="text-muted mb-0">Plan your meals for the week and generate shopping lists automatically.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <button class="btn btn-primary me-2" data-bs-toggle="modal" data-bs-target="#addRecipeModal">
+                        <i class="bi bi-plus-circle me-1"></i>Add Recipe to Plan
+                    </button>
+                    <button class="btn btn-secondary me-2" id="generateShoppingList">
+                        <i class="bi bi-cart-plus me-1"></i>Generate Shopping List
+                    </button>
+                    <button class="btn btn-outline-danger" id="clearMealPlan">
+                        <i class="bi bi-trash me-1"></i>Clear Plan
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Meal Planner Calendar -->
+    <section class="py-4">
+        <div class="container">
+            <div class="card shadow-sm">
+                <div class="card-header bg-white">
+                    <div class="row align-items-center">
+                        <div class="col">
+                            <h5 class="mb-0">This Week</h5>
+                        </div>
+                        <div class="col-auto">
+                            <button class="btn btn-sm btn-outline-primary" id="prevWeek">
+                                <i class="bi bi-chevron-left"></i>
+                            </button>
+                            <span class="mx-2" id="currentWeek">Week of Jan 1, 2025</span>
+                            <button class="btn btn-sm btn-outline-primary" id="nextWeek">
+                                <i class="bi bi-chevron-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body p-0">
+                    <div class="meal-planner-grid">
+                        <div class="meal-header"></div>
+                        <div class="meal-header text-center fw-bold">Breakfast</div>
+                        <div class="meal-header text-center fw-bold">Lunch</div>
+                        <div class="meal-header text-center fw-bold">Dinner</div>
+
+                        <!-- Days of the week will be populated by JavaScript -->
+                        <div id="mealPlannerContent">
+                            <!-- Content will be generated by JavaScript -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Recipe Suggestions -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <h4 class="mb-4">Recipe Suggestions</h4>
+            <div class="row g-4" id="recipeSuggestions">
+                <!-- Recipe suggestions will be populated by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Add Recipe Modal -->
+    <div class="modal fade" id="addRecipeModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Add Recipe to Meal Plan</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label for="selectDay" class="form-label">Day</label>
+                            <select class="form-select" id="selectDay">
+                                <option value="">Select Day</option>
+                                <option value="monday">Monday</option>
+                                <option value="tuesday">Tuesday</option>
+                                <option value="wednesday">Wednesday</option>
+                                <option value="thursday">Thursday</option>
+                                <option value="friday">Friday</option>
+                                <option value="saturday">Saturday</option>
+                                <option value="sunday">Sunday</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="selectMeal" class="form-label">Meal</label>
+                            <select class="form-select" id="selectMeal">
+                                <option value="">Select Meal</option>
+                                <option value="breakfast">Breakfast</option>
+                                <option value="lunch">Lunch</option>
+                                <option value="dinner">Dinner</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Recipe Search -->
+                    <div class="mb-3">
+                        <input type="text" class="form-control" id="recipeSearch" placeholder="Search for recipes...">
+                    </div>
+
+                    <!-- Recipe Results -->
+                    <div class="row g-3" id="modalRecipeResults">
+                        <!-- Recipe options will be populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-5">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-3">
+                    <h5 class="fw-bold text-primary mb-3">Recipe Finder</h5>
+                    <p>Discover, cook, and share amazing recipes from around the world.</p>
+                </div>
+                <div class="col-lg-3">
+                    <h6 class="fw-bold mb-3">Recipes</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-light text-decoration-none">Breakfast</a></li>
+                        <li><a href="#" class="text-light text-decoration-none">Lunch</a></li>
+                        <li><a href="#" class="text-light text-decoration-none">Dinner</a></li>
+                        <li><a href="#" class="text-light text-decoration-none">Desserts</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3">
+                    <h6 class="fw-bold mb-3">Tools</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="meal-planner.html" class="text-light text-decoration-none">Meal Planner</a></li>
+                        <li><a href="shopping-list.html" class="text-light text-decoration-none">Shopping List</a></li>
+                        <li><a href="profile.html" class="text-light text-decoration-none">Favorites</a></li>
+                        <li><a href="submit-recipe.html" class="text-light text-decoration-none">Submit Recipe</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3">
+                    <h6 class="fw-bold mb-3">Support</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="contact.html" class="text-light text-decoration-none">Contact Us</a></li>
+                        <li><a href="#" class="text-light text-decoration-none">FAQ</a></li>
+                        <li><a href="#" class="text-light text-decoration-none">Privacy Policy</a></li>
+                        <li><a href="#" class="text-light text-decoration-none">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="my-4">
+            <div class="text-center">
+                <p class="mb-0">&copy; 2025 Recipe Finder. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="scripts/data.js"></script>
+    <script src="scripts/utils.js"></script>
+    <script src="scripts/meal-planner.js"></script>
+</body>
+</html>
